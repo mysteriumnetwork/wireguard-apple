@@ -402,6 +402,8 @@
 				585B10572577E293004F691E /* key.c */,
 				585B10552577E293004F691E /* key.h */,
 				585B10542577E293004F691E /* WireGuardKitC.h */,
+				6FF3526C21C23F960008484E /* ringlogger.c */,
+				6FF3526B21C23F960008484E /* ringlogger.h */,
 				585B10562577E293004F691E /* x25519.c */,
 				585B10592577E293004F691E /* x25519.h */,
 			);
@@ -648,8 +650,6 @@
 		6FF3526A21C23F720008484E /* Logging */ = {
 			isa = PBXGroup;
 			children = (
-				6FF3526C21C23F960008484E /* ringlogger.c */,
-				6FF3526B21C23F960008484E /* ringlogger.h */,
 				6FF3526E21C23FA10008484E /* Logger.swift */,
 			);
 			path = Logging;
