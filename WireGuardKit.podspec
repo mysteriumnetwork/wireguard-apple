@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "WireGuardKit"
-  spec.version = "0.5"
+  spec.version = "0.6.0"
   spec.summary = "WireGuard for iOS and macOS"
 
   spec.description = <<-DESC
@@ -31,12 +31,11 @@ Pod::Spec.new do |spec|
   spec.source_files = [
     "Sources/WireGuardKitC/**/*.{c,h}",
     "Sources/WireGuardKit/**/*.{swift}",
-    "Sources/Shared/**/*.{c,h,swift}",
+    "Sources/Shared/**/*.{swift}",
     "Sources/WireGuardKitGo/wireguard.h",
     "Sources/WireGuardNetworkExtension/**/*.{c,h,swift}",
   ]
   spec.exclude_files = [
-    "Sources/Shared/**/test*.*",
     "Sources/WireGuardKitGo/out/**",
   ]
   spec.preserve_paths = [

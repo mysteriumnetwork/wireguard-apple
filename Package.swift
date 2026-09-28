@@ -14,18 +14,31 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
+        // Spans the three source directories the podspec combines into one pod, so the SwiftPM
+        // and CocoaPods module surfaces match. WireGuardNetworkExtension carries
+        // WireGuardTunnelProvider, which consumers subclass.
         .target(
             name: "WireGuardKit",
-            dependencies: ["WireGuardKitGo", "WireGuardKitC"]
+            dependencies: ["WireGuardKitGo", "WireGuardKitC"],
+            path: "Sources",
+            exclude: [
+                "WireGuardApp",
+                "WireGuardNetworkExtension/Info.plist",
+                "WireGuardNetworkExtension/WireGuardNetworkExtension_iOS.entitlements",
+                "WireGuardNetworkExtension/WireGuardNetworkExtension_macOS.entitlements"
+            ],
+            sources: ["WireGuardKit", "Shared", "WireGuardNetworkExtension"]
         ),
         .target(
             name: "WireGuardKitC",
             dependencies: [],
+            path: "Sources/WireGuardKitC",
             publicHeadersPath: "."
         ),
         .target(
             name: "WireGuardKitGo",
-            dependencies: [],
+            dependencies: ["wg-go"],
+            path: "Sources/WireGuardKitGo",
             exclude: [
                 "goruntime-boottime-over-monotonic.diff",
                 "go.mod",
@@ -33,8 +46,9 @@ let package = Package(
                 "api-apple.go",
                 "Makefile"
             ],
-            publicHeadersPath: ".",
-            linkerSettings: [.linkedLibrary("wg-go")]
-        )
+            publicHeadersPath: "."
+        ),
+        // The podspec vendors this same xcframework via vendored_frameworks.
+        .binaryTarget(name: "wg-go", path: "Frameworks/wg-go.xcframework")
     ]
 )

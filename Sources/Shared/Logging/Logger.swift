@@ -4,6 +4,10 @@
 import Foundation
 import os.log
 
+#if SWIFT_PACKAGE
+import WireGuardKitC
+#endif
+
 class Logger {
     enum LoggerError: Error {
         case openFailure
